@@ -12,39 +12,38 @@ external_components:
 esp8266:
   board: d1_mini
 
-# Enable logging
 logger:
   baud_rate: 0
 
-# Enable Home Assistant API
 api:
   encryption:
-    key: xC5Kof3w5zZ1Qw4Qod0Dkjh7M142Ne0Ng6EqyXlWvBU=
+    key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=
 
 ota:
   - platform: esphome
-    password: "c3d876c082e6e2b605424ba47f186394"
+    password: "xxxxxxxxxxxxxxxxxxxxxxx"
 
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "your-sensor-hotspot"
     password: "your-password"
 
-captive_portal:   
+captive_portal:
+
 
 uart:
   id: uart_bus
-  tx_pin: 
+  tx_pin:
     number: GPIO1
-  rx_pin: 
+  rx_pin:
     number: GPIO3
   baud_rate: 256000
   parity: NONE
   stop_bits: 1
+
 
 ld2450:
   uart_id: uart_bus
@@ -52,135 +51,181 @@ ld2450:
   invert_y: false
   invert_x: false
 
+
 binary_sensor:
-- platform: ld2450
-  has_target:
-    name: Presence
-  has_moving_target:
-    name: Moving Target
-  has_still_target:
-    name: Still Target
-  presence_regions:
-    - name: "Custom Presence Region 0"
-      region_id: presence_region_0
+  - platform: ld2450
+    has_target:
+      name: Presence
+
+    presence_regions:
+      - name: "Zone 1"
+        region_id: presence_region_0
+
+      - name: "Zone 2"
+        region_id: presence_region_1
+
+
+  - platform: ld2450
+    has_moving_target:
+      name: Moving Target
+
+  - platform: ld2450
+    has_still_target:
+      name: Still Target
+
 
 text_sensor:
   - platform: ld2450
     version:
       name: "FW"
+
     mac_address:
       name: "MAC address"
+
 
 button:
   - platform: restart
     name: "ESP Restart"
+
   - platform: ld2450
     factory_reset:
       name: "Factory reset"
+
     reboot:
       name: "Reboot"
+
 
 switch:
   - platform: ld2450
     single_target:
       name: "Single target"
+
     bluetooth:
       name: "Bluetooth"
 
+
 number:
-- platform: ld2450
-  rotate:
-    restore_value: true
-    initial_value: 0
-    name: "Rotate angle"
-  presence_timeout:
-    name: "Presence timeout"
-  presence_regions:
-    - x0: 100
-      y0: 100
-      x1: 200
-      y1: 200
-      id: presence_region_0
-  entry_points:
-    - x: 0
-      y: 0
-  region_0:
-    x0:
-      name: R0X0
-    y0:
-      name: R0Y0
-    x1:
-      name: R0X1
-    y1:
-      name: R0Y1
+  - platform: ld2450
 
-  region_1:
-    x0:
-      name: R1X0
-    y0:
-      name: R1Y0
-    x1:
-      name: R1X1
-    y1:
-      name: R1Y1
+    rotate:
+      restore_value: true
+      initial_value: 0
+      name: "Rotate angle"
 
-  region_2:
-    x0:
-      name: R2X0
-    y0:
-      name: R2Y0
-    x1:
-      name: R2X1
-    y1:
-      name: R2Y1
+    presence_timeout:
+      name: "Presence timeout"
+
+
+    # Définition des zones HLK
+    presence_regions:
+
+      # Zone 1
+      - id: presence_region_0
+        x0: -247
+        y0: 20
+        x1: 303
+        y1: 110
+
+      # Zone 2
+      - id: presence_region_1
+        x0: -15
+        y0: 455
+        x1: 245
+        y1: 535
+
+
+    entry_points:
+      - x: 0
+        y: 0
+
+
+    region_0:
+      x0:
+        name: R0X0
+      y0:
+        name: R0Y0
+      x1:
+        name: R0X1
+      y1:
+        name: R0Y1
+
+
+    region_1:
+      x0:
+        name: R1X0
+      y0:
+        name: R1Y0
+      x1:
+        name: R1X1
+      y1:
+        name: R1Y1
+
+
+    region_2:
+      x0:
+        name: R2X0
+      y0:
+        name: R2Y0
+      x1:
+        name: R2X1
+      y1:
+        name: R2Y1
+
 
 select:
   - platform: ld2450
+
     baud_rate:
       name: "Baud rate"
+
     regions_type:
       name: "Regions type"
 
+
 sensor:
-- platform: ld2450
-  target_count:
-    name: Target count
+  - platform: ld2450
 
-  person_0:
-    position_x:
-      name: "P0X"  
+    target_count:
+      name: Target count
 
-    position_y:
-      name: "P0Y"  
 
-    speed:
-      name: "S0"  
+    person_0:
+      position_x:
+        name: "P0X"
 
-    resolution:
-      name: "R0"  
+      position_y:
+        name: "P0Y"
 
-  person_1:
-    position_x:
-      name: "P1X"  
+      speed:
+        name: "S0"
 
-    position_y:
-      name: "P1Y"  
+      resolution:
+        name: "R0"
 
-    speed:
-      name: "S1"  
 
-    resolution:
-      name: "R1"  
+    person_1:
+      position_x:
+        name: "P1X"
 
-  person_2:
-    position_x:
-      name: "P2X"  
+      position_y:
+        name: "P1Y"
 
-    position_y:
-      name: "P2Y"  
+      speed:
+        name: "S1"
 
-    speed:
-      name: "S2"  
+      resolution:
+        name: "R1"
 
-    resolution:
-      name: "R2"
+
+    person_2:
+      position_x:
+        name: "P2X"
+
+      position_y:
+        name: "P2Y"
+
+      speed:
+        name: "S2"
+
+      resolution:
+        name: "R2"
