@@ -31,7 +31,7 @@ layout:
       - 0
 entities:
   - entity: ""
-    name: Target1
+    name: Target 1
     marker:
       size: 12
     line:
@@ -42,7 +42,7 @@ entities:
     "y":
       - $ex hass.states["sensor.hlk_presence_p0y"].state
   - entity: ""
-    name: Target2
+    name: Target 2
     marker:
       size: 12
     line:
@@ -53,7 +53,7 @@ entities:
     "y":
       - $ex hass.states["sensor.hlk_presence_p1y"].state
   - entity: ""
-    name: Target3
+    name: Target 3
     marker:
       size: 12
     line:
@@ -64,70 +64,50 @@ entities:
     "y":
       - $ex hass.states["sensor.hlk_presence_p2y"].state
   - entity: ""
-    name: Zone1
+    name: Zone 1
     mode: lines
     fill: toself
-    fillcolor: RGBA(20,200,0,0.06)
+    fillcolor: RGBA(20,200,0,0.10)
     line:
-      color: RGBA(20,200,0,0.2)
+      color: RGBA(20,200,0,0.5)
       width: 2
     x:
-      - $ex hass.states["number.hlk_presence_r0x0"].state
-      - $ex hass.states["number.hlk_presence_r0x0"].state
-      - $ex hass.states["number.hlk_presence_r0x1"].state
-      - $ex hass.states["number.hlk_presence_r0x1"].state
-      - $ex hass.states["number.hlk_presence_r0x0"].state
+      - -247
+      - -247
+      - 303
+      - 303
+      - -247
     "y":
-      - $ex hass.states["number.hlk_presence_r0y0"].state
-      - $ex hass.states["number.hlk_presence_r0y0"].state
-      - $ex hass.states["number.hlk_presence_r0y1"].state
-      - $ex hass.states["number.hlk_presence_r0y1"].state
-      - $ex hass.states["number.hlk_presence_r0y0"].state
+      - 20
+      - 110
+      - 110
+      - 20
+      - 20
   - entity: ""
-    name: Zone2
+    name: Zone 2
     mode: lines
     fill: toself
-    fillcolor: RGBA(200,0,255,0.06)
+    fillcolor: RGBA(200,0,255,0.10)
     line:
-      color: RGBA(200,0,255,0.2)
+      color: RGBA(200,0,255,0.5)
       width: 2
     x:
-      - $ex hass.states["number.hlk_presence_r1x0"].state
-      - $ex hass.states["number.hlk_presence_r1x0"].state
-      - $ex hass.states["number.hlk_presence_r1x1"].state
-      - $ex hass.states["number.hlk_presence_r1x1"].state
-      - $ex hass.states["number.hlk_presence_r1x0"].state
+      - -15
+      - -15
+      - 245
+      - 245
+      - -15
     "y":
-      - $ex hass.states["number.hlk_presence_r1y0"].state
-      - $ex hass.states["number.hlk_presence_r1y0"].state
-      - $ex hass.states["number.hlk_presence_r1y1"].state
-      - $ex hass.states["number.hlk_presence_r1y1"].state
-      - $ex hass.states["number.hlk_presence_r1y0"].state
-  - entity: ""
-    name: Zone3
-    mode: lines
-    fill: toself
-    fillcolor: RGBA(200,120,55,0.06)
-    line:
-      color: RGBA(200,120,55,0.2)
-      width: 2
-    x:
-      - $ex hass.states["number.hlk_presence_r2x0"].state
-      - $ex hass.states["number.hlk_presence_r2x0"].state
-      - $ex hass.states["number.hlk_presence_r2x1"].state
-      - $ex hass.states["number.hlk_presence_r2x1"].state
-      - $ex hass.states["number.hlk_presence_r2x0"].state
-    "y":
-      - $ex hass.states["number.hlk_presence_r2y0"].state
-      - $ex hass.states["number.hlk_presence_r2y0"].state
-      - $ex hass.states["number.hlk_presence_r2y1"].state
-      - $ex hass.states["number.hlk_presence_r2y1"].state
-      - $ex hass.states["number.hlk_presence_r2y0"].state
+      - 455
+      - 535
+      - 535
+      - 455
+      - 455
   - entity: ""
     name: Coverage
     mode: lines
     fill: tonexty
-    fillcolor: rgba(168, 216, 234, 0.15)
+    fillcolor: rgba(168,216,234,0.15)
     line:
       shape: line
       width: 1
